@@ -1,6 +1,7 @@
 package com.example.realtime_ecommerce_microservices_platform.service;
 
 import com.example.realtime_ecommerce_microservices_platform.Repository.UserRepository;
+import com.example.realtime_ecommerce_microservices_platform.dtos.LoginRequest;
 import com.example.realtime_ecommerce_microservices_platform.dtos.RegisterRequest;
 import com.example.realtime_ecommerce_microservices_platform.entity.User;
 import com.example.realtime_ecommerce_microservices_platform.security.JwtUtil;
@@ -28,4 +29,15 @@ public class AuthService {
         return jwtUtil.generateToken(user.getEmail());
     }
 
+    public String login(LoginRequest request) {
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return jwtUtil.generateToken(user.getEmail());
+    }
 }
