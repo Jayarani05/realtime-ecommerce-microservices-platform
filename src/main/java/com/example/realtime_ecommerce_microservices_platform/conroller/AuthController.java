@@ -1,6 +1,7 @@
 package com.example.realtime_ecommerce_microservices_platform.conroller;
 
 import com.example.realtime_ecommerce_microservices_platform.dtos.AuthResponse;
+import com.example.realtime_ecommerce_microservices_platform.dtos.LoginRequest;
 import com.example.realtime_ecommerce_microservices_platform.dtos.RegisterRequest;
 import com.example.realtime_ecommerce_microservices_platform.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,11 @@ public class AuthController {
     @PostMapping("/register")
     public AuthResponse register(@RequestBody RegisterRequest request) {
         return new AuthResponse(authService.register(request));
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(@RequestBody LoginRequest request) {
+        return new AuthResponse(authService.login(request));
     }
 
 }
