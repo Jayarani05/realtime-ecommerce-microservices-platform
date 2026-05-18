@@ -3,9 +3,11 @@ package com.example.realtime_ecommerce_microservices_platform.service;
 import com.example.realtime_ecommerce_microservices_platform.Repository.UserRepository;
 import com.example.realtime_ecommerce_microservices_platform.dtos.LoginRequest;
 import com.example.realtime_ecommerce_microservices_platform.dtos.RegisterRequest;
+import com.example.realtime_ecommerce_microservices_platform.entity.Role;
 import com.example.realtime_ecommerce_microservices_platform.entity.User;
 import com.example.realtime_ecommerce_microservices_platform.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +24,8 @@ public class AuthService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole("USER");
+//        user.setRole("USER");
+        user.setRole(Role.USER);
 
         userRepository.save(user);
 
