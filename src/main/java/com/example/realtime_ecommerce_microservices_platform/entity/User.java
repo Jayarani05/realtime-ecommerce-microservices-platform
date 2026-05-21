@@ -3,8 +3,8 @@ package com.example.realtime_ecommerce_microservices_platform.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 @Entity
+@Table(name = "users")
 @Data
 public class User {
 
@@ -20,6 +20,5 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private String role;
-
+    private Role role;
 }

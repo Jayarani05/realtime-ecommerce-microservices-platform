@@ -1,5 +1,6 @@
 package com.example.realtime_ecommerce_microservices_platform.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
